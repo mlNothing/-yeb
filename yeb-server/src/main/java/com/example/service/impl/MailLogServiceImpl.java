@@ -1,9 +1,9 @@
 package com.example.service.impl;
 
-import com.example.pojo.MailLog;
-import com.example.mapper.MailLogMapper;
-import com.example.service.IMailLogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.mapper.MailLogMapper;
+import com.example.pojo.MailLog;
+import com.example.service.IMailLogService;
 import org.springframework.stereotype.Service;
 
 /**

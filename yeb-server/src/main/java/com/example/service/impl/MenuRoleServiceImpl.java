@@ -1,9 +1,9 @@
 package com.example.service.impl;
 
-import com.example.pojo.MenuRole;
-import com.example.mapper.MenuRoleMapper;
-import com.example.service.IMenuRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.mapper.MenuRoleMapper;
+import com.example.pojo.MenuRole;
+import com.example.service.IMenuRoleService;
 import org.springframework.stereotype.Service;
 
 /**
