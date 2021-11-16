@@ -1,7 +1,7 @@
 package com.example.mapper;
 
-import com.example.pojo.Joblevel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.pojo.Joblevel;
 
 /**
  * <p>

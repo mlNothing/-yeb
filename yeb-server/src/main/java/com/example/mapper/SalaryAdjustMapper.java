@@ -1,7 +1,7 @@
 package com.example.mapper;
 
-import com.example.pojo.SalaryAdjust;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.pojo.SalaryAdjust;
 
 /**
  * <p>
