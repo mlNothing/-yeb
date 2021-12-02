@@ -89,7 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         //放行静态资源
         web.ignoring().antMatchers(
-                "/login",
+                "/admin/login",
                 "/logout",
                 "/css/**",
                 "/js/**",
@@ -98,7 +98,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/doc.html",
                 "/webjars/**",
                 "/swagger-resources/**",
-                "/v2/api-docs/**");
+                "/v2/api-docs/**",
+                "/kaptcha");
     }
 }
 

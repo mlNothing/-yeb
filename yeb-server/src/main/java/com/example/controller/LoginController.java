@@ -31,11 +31,12 @@ public class LoginController {
     @Autowired
     private IAdminService adminService;
     @ApiOperation(value = "登录之后返回token")
-    @PostMapping("/login")
+    @PostMapping("/admin/login")
     public RespBean login(@RequestBody AdminLoginParam adminLoginParam,
                           HttpServletRequest request) {
         return adminService.login(adminLoginParam.getUsername(),
-                adminLoginParam.getPassword(), request);
+                adminLoginParam.getPassword(),
+                adminLoginParam.getCode(),request);
     }
     @ApiOperation(value = "获取当前用户信息")
     @GetMapping("/admin/info")

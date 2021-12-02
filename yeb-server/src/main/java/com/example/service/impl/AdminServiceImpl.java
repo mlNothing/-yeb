@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.config.sercurity.component.JwtTokenUtil;
 import com.example.mapper.AdminMapper;
@@ -48,7 +49,14 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      * @return
      */
     @Override
-    public RespBean login(String username, String password, HttpServletRequest request) {
+    public RespBean login(String username, String password,String code, HttpServletRequest request) {
+//        增加验证码
+        String kaptcha = (String) request.getSession().getAttribute("kaptcha");
+        if (StringUtils.isBlank(code) || !kaptcha.equals(code)) {
+            return RespBean.error("验证码填写错误！");
+        }
+
+//       --
         UserDetails userDetails =
                 userDetailsService.loadUserByUsername(username);
         if (null == userDetails || !passwordEncoder.matches(password,
