@@ -20,12 +20,13 @@ import java.security.Principal;
  * @author zhoubin
  * @since 1.0.0
  */
-@Api(tags = "LoginController")
-@RestController
+
 /**
  * @author mlNothing
  * @date 2021/11/16 11:30
  */
+@Api(tags = "LoginController")
+@RestController
 public class LoginController {
     @Autowired
     private IAdminService adminService;
