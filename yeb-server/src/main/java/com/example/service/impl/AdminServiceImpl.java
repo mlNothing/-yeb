@@ -52,7 +52,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public RespBean login(String username, String password,String code, HttpServletRequest request) {
 //        增加验证码
         String kaptcha = (String) request.getSession().getAttribute("kaptcha");
-        if (StringUtils.isBlank(code) || !kaptcha.equals(code)) {
+        if (StringUtils.isBlank(code) || !kaptcha.equalsIgnoreCase(code)) {
             return RespBean.error("验证码填写错误！");
         }
 
