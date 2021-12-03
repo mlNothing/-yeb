@@ -44,9 +44,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     /**
      * 登录返回token
      *
-     * @param username
-     * @param password
-     * @return
+     * @param username username
+     * @param password password
+     * @return RespBean
      */
     @Override
     public RespBean login(String username, String password,String code, HttpServletRequest request) {
@@ -71,7 +71,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
                         userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtTokenUtil.generateToken(userDetails);
-        Map<String, String> tokenMap = new HashMap<>();
+        Map<String, String> tokenMap = new HashMap<>(70);
         tokenMap.put("token", token);
         tokenMap.put("tokenHead", tokenHead);
         return RespBean.success("登录成功", tokenMap);
@@ -79,8 +79,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     /**
      * 根据用户名获取用户
      *
-     * @param username
-     * @return
+     * @param username username
+     * @return Admin
      */
     @Override
     public Admin getAdminByUserName(String username) {
