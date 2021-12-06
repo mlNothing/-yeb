@@ -20,7 +20,7 @@ import java.util.List;
  *  服务实现类
  * </p>
  *
- * @author mlx
+ * @author mlNothing
  * @since 2021-11-16
  */
 @Service
@@ -42,5 +42,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
             valueOperations.set("menu_"+adminId,menus);
         }
         return menus;
+    }
+
+    @Override
+    public List<Menu> getAllMenusWithRole() {
+        return menuMapper.getAllMenusWithRole();
     }
 }

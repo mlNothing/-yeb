@@ -15,4 +15,12 @@ public class helloC {
         return "hello";
     }
 
+    @GetMapping("/employee/basic/hello")
+    public String hello2(){
+        return "/employee/basic/**";
+    }
+    @GetMapping("/employee/advanced/**")
+    public String hello3(){
+        return "/employee/advanced/**";
+    }
 }

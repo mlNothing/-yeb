@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.config.sercurity.component.JwtTokenUtil;
 import com.example.mapper.AdminMapper;
+import com.example.mapper.RoleMapper;
 import com.example.pojo.Admin;
 import com.example.pojo.RespBean;
+import com.example.pojo.Role;
 import com.example.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,6 +36,8 @@ import java.util.Map;
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
     @Autowired
     private AdminMapper adminMapper;
+    @Autowired
+    private RoleMapper roleMapper;
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
@@ -86,5 +91,10 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public Admin getAdminByUserName(String username) {
         return adminMapper.selectOne(new QueryWrapper<Admin>().eq("username",
                 username));
+    }
+
+    @Override
+    public List<Role> getRoles(Integer adminId) {
+        return roleMapper.getRoles(adminId);
     }
 }

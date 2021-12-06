@@ -13,5 +13,16 @@
     <sql id="Base_Column_List">
         id, name, nameZh
     </sql>
+    <select id="getRoles" resultType="com.example.pojo.Role">
+        SELECT
+            r.id,
+            r.`name`,
+            r.nameZh
+        FROM
+            t_role AS r
+            LEFT JOIN t_admin_role AS ar ON ar.rid = r.id
+        WHERE
+            ar.adminId = #{adminId}
+    </select>
 
 </mapper>
