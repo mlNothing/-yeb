@@ -1,7 +1,6 @@
 package com.example.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.config.RedisConfig;
 import com.example.mapper.MenuMapper;
 import com.example.pojo.Admin;
 import com.example.pojo.Menu;
@@ -47,5 +46,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     @Override
     public List<Menu> getAllMenusWithRole() {
         return menuMapper.getAllMenusWithRole();
+    }
+
+    @Override
+    public List<Menu> getAllMenus() {
+        return menuMapper.getAllMenus();
     }
 }

@@ -30,4 +30,13 @@ public interface IMenuService extends IService<Menu> {
      * @return 
      */
     List<Menu> getAllMenusWithRole();
+
+    /**
+     * create by: mlNothing
+     * description: 查询所有菜单列表
+     * create time: 2021/12/7 11:04
+     * @param
+     * @return
+     */
+    List<Menu> getAllMenus();
 }

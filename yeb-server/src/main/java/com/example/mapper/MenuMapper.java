@@ -36,4 +36,14 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @return 
      */
     List<Menu> getAllMenusWithRole();
+
+
+    /**
+     * create by: mlNothing
+     * description: 查询所有菜单列表
+     * create time: 2021/12/7 11:05
+     * @param
+     * @return
+     */
+    List<Menu> getAllMenus();
 }
