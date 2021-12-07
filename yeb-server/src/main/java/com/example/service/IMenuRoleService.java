@@ -15,6 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface IMenuRoleService extends IService<MenuRole> {
 
-    public RespBean updateMenuRole(@RequestBody Integer rid, Integer[] mids);
+    /**
+     * create by: mlNothing
+     * description: 根据角色id更新菜单id
+     * create time: 2021/12/7 15:28
+     * @param rid 角色id
+     * @param mids 菜单id
+     * @return  RespBean
+     */
+    RespBean updateMenuRole(@RequestBody Integer rid, Integer[] mids);
 
 }

@@ -25,7 +25,7 @@ public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole> i
     @Autowired
     private MenuRoleMapper menuRoleMapper;
     @Override
-    @Transactional
+    @Transactional(rollbackFor=Exception.class)
     public RespBean updateMenuRole(Integer rid, Integer[] mids) {
         menuRoleMapper.delete(new QueryWrapper<MenuRole>().eq("rid",rid));
         if (null == mids || 0==mids.length){
