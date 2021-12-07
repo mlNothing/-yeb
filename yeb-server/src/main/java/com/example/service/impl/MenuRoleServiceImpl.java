@@ -31,9 +31,7 @@ public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole> i
         if (null == mids || 0==mids.length){
            return RespBean.success("删除成功");
         }
-        System.out.println(2);
        Integer result= menuRoleMapper.insertRecord(rid,mids);
-        System.out.println(result);
         if (result == mids.length){
             return RespBean.success("更新成功");
         }
