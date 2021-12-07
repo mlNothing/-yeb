@@ -6,7 +6,7 @@ swagger访问文档 http:localhost:8081/doc.html
 token前需要加上Bearer
 ![img.png](img.png)
 
-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
+gittoken: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
 
 
 
