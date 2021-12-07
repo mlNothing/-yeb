@@ -52,7 +52,13 @@ public class Swagger2Config {
                 .build();
     }
 
-//    点击 Authorize 按钮，在参数值输入框中输入获取的token，并保存
+        /**
+         * create by: mlNothing
+         * description:  点击 Authorize 按钮，在参数值输入框中输入获取的token，并保存
+         * create time: 2021/12/7 10:10
+         * @param
+         * @return
+         */
     private List<SecurityReference> defaultAuth() {
         List<SecurityReference> result = new ArrayList<>();
         AuthorizationScope authorizationScope = new AuthorizationScope("global",

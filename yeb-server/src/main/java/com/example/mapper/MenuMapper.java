@@ -28,5 +28,12 @@ public interface MenuMapper extends BaseMapper<Menu> {
      */
     List<Menu> getMenuByAdminId(Integer id);
 
+    /**
+     * create by: mlNothing
+     * description: 通过角色获取所有菜单
+     * create time: 2021/12/7 10:09
+     * @param 
+     * @return 
+     */
     List<Menu> getAllMenusWithRole();
 }

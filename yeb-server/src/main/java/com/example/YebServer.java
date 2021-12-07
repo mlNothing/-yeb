@@ -5,8 +5,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Hello world!
- *
+ * create by: mlNothing
+ * description:
+ * @author mlNothing
+ * create time: 2021/12/7 10:13
+ * @param
+ * @return
  */
 @SpringBootApplication
 @MapperScan("com.example.mapper")
