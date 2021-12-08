@@ -12,9 +12,29 @@
         <result column="isParent" property="isParent" />
     </resultMap>
 
+    <resultMap id="DepartmentWithChildren" type="com.example.pojo.Department" extends="BaseResultMap">
+        <collection property="children" ofType="com.example.pojo.Department"
+                    select="com.example.mapper.DepartmentMapper.getAllDepartmentWithChildren"
+                    column="id"
+                    ></collection>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, parentId, depPath, enabled, isParent
     </sql>
+<!--添加部门-->
+    <select id="addDepartment" statementType="CALLABLE">
+        call addDep(#{name,mode=IN,jdbcType=VARCHAR},#{parentId,mode=IN,jdbcType=VARCHAR},
+            #{enabled,mode=IN,jdbcType=BOOLEAN},#{result,mode=OUT,jdbcType= INTEGER},
+            #{id,mode=OUT,jdbcType=INTEGER}
+            )
+    </select>
+<!--查找所有的部门列表-->
+    <select id="getAllDepartmentWithChildren" resultMap="DepartmentWithChildren">
+        select
+        <include refid="Base_Column_List"/>
+        from t_department where parentId=#{pid}
+    </select>
 
 </mapper>

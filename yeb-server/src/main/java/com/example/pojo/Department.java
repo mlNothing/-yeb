@@ -1,6 +1,7 @@
 package com.example.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -10,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -23,7 +25,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_department")
-@ApiModel(value="Department对象", description="")
+@ApiModel(value="Department对象", description="Department对象")
 public class Department implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,5 +49,11 @@ public class Department implements Serializable {
     @ApiModelProperty(value = "是否上级")
     private Boolean isParent;
 
+    @ApiModelProperty(value = "子部门列表")
+    @TableField(exist = false )
+    private List<Department> children;
 
+    @ApiModelProperty(value = "返回结果,存储过程使用")
+    @TableField(exist = false)
+    private Integer result;
 }
