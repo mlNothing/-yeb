@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageResBean {
+public class RespPageBean {
     @ApiModelProperty(value = "总条数")
     private Long total;
     @ApiModelProperty(value = "返回的数据")
