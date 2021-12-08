@@ -3,8 +3,10 @@ package com.example.controller;
 
 import com.example.pojo.Admin;
 import com.example.pojo.RespBean;
+import com.example.pojo.Role;
 import com.example.service.IAdminRoleService;
 import com.example.service.IAdminService;
+import com.example.service.IRoleService;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,9 @@ public class AdminController {
     @Autowired
     private IAdminRoleService adminRoleService;
 
+    @Autowired
+    private IRoleService roleService;
+
     @ApiModelProperty(value = "根据关键词查找当前所有用户和所带的角色")
     @GetMapping("/")
     public List<Admin> getAllAdmins(String keyWords){
@@ -41,6 +46,13 @@ public class AdminController {
             return RespBean.success("添加成功");
         }return RespBean.error("添加失败");
     }
+    @ApiModelProperty(value = "获取所有角色")
+    @GetMapping("/roles")
+    public List<Role> getAllRoles(){
+        List<Role> list = roleService.list();
+        return list;
+    }
+
     @ApiModelProperty("根据id删除操作员")
     @GetMapping("/{id}")
     public RespBean deleteAdminById(@PathVariable Integer id){
