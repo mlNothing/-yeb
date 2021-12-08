@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.adminUtils.AdminUtil;
 import com.example.config.sercurity.component.JwtTokenUtil;
 import com.example.mapper.AdminMapper;
 import com.example.mapper.RoleMapper;
@@ -96,5 +97,11 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public List<Role> getRoles(Integer adminId) {
         return roleMapper.getRoles(adminId);
+    }
+
+    @Override
+    public List<Admin> getAllAdmins(String keyWords) {
+        Integer id = AdminUtil.getCurrentAdmin().getId();
+        return adminMapper.getAllAdmins(id,keyWords);
     }
 }

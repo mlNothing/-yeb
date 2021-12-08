@@ -15,10 +15,32 @@
         <result column="userFace" property="userFace" />
         <result column="remark" property="remark" />
     </resultMap>
-
+    <resultMap id="AdminWithRole" type="com.example.pojo.Admin" extends="BaseResultMap">
+        <collection property="roles" ofType="com.example.pojo.Role">
+            <result column="rname" property="name"></result>
+            <result column="rnameZH" property="nameZh"></result>
+        </collection>
+    </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, phone, telephone, address, enabled, username, password, userFace, remark
     </sql>
+<!--    根据当前用户查询其他所有用户-->
+    <select id="getAllAdmins" resultMap="AdminWithRole">
+        SELECT
+            a.*,
+            r.`name` AS rname,
+            r.nameZh AS rnameZH
+        FROM
+            t_admin a
+                LEFT JOIN t_admin_role ar ON a.id = ar.adminId
+                LEFT JOIN t_role r ON r.id = ar.rid
+        where
+            a.id != #{id}
+            <if test="null != keyWords || ''!=keyWords">
+            AND a.`name` LIKE CONCAT( '%',#{keyWords}, '%' )
+            </if>
+
+    </select>
 
 </mapper>

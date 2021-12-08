@@ -48,4 +48,13 @@ public interface IAdminService extends IService<Admin> {
      * @return Liset
      */
     List<Role> getRoles(Integer adminId);
+
+    /**
+     * create by: mlNothing
+     * description: 根据关键词获取当前用户查询到的所有用户
+     * create time: 2021/12/8 15:44
+     * @param keyWords 关键词
+     * @return RespBean
+     */
+    List<Admin> getAllAdmins(String keyWords);
 }
