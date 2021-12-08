@@ -23,7 +23,11 @@
     <sql id="Base_Column_List">
         id, name, parentId, depPath, enabled, isParent
     </sql>
-<!--添加部门-->
+<!--    删除部门-->
+    <select id="deleDePartment" statementType="CALLABLE">
+        call deleteDep(#{id,mode=IN,jdbcType=INTEGER},#{result,mode=OUT,jdbcType=INTEGER})
+    </select>
+    <!--添加部门-->
     <select id="addDepartment" statementType="CALLABLE">
         call addDep(#{name,mode=IN,jdbcType=VARCHAR},#{parentId,mode=IN,jdbcType=VARCHAR},
             #{enabled,mode=IN,jdbcType=BOOLEAN},#{result,mode=OUT,jdbcType= INTEGER},

@@ -3,6 +3,7 @@ package com.example.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.pojo.Department;
 import com.example.pojo.RespBean;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -31,4 +32,12 @@ public interface IDepartmentService extends IService<Department> {
      * @return RespBean
      */
      RespBean addDepartment(Department department);
+    /**
+     * create by: mlNothing
+     * description: 根据id删除部门
+     * create time: 2021/12/8 14:35
+     * @param id id
+     * @return RespBean
+     */
+     RespBean deleDePartment(Integer id);
 }
