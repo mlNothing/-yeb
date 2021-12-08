@@ -1,8 +1,10 @@
 package com.example.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -100,15 +102,19 @@ public class Employee implements Serializable {
     private Double contractTerm;
 
     @ApiModelProperty(value = "转正日期")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private LocalDate conversionTime;
 
     @ApiModelProperty(value = "离职日期")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private LocalDate notWorkDate;
 
     @ApiModelProperty(value = "合同起始日期")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private LocalDate beginContract;
 
     @ApiModelProperty(value = "合同终止日期")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private LocalDate endContract;
 
     @ApiModelProperty(value = "工龄")
@@ -116,6 +122,22 @@ public class Employee implements Serializable {
 
     @ApiModelProperty(value = "工资账套ID")
     private Integer salaryId;
+    @ApiModelProperty(value = "政治面貌实体类")
+    @TableField(exist = false)
+    private PoliticsStatus politicsStatus;
 
+    @ApiModelProperty(value = "民族实体类")
+    @TableField(exist = false)
+    private Nation nation;
 
+    @ApiModelProperty(value = "部门实体类")
+    @TableField(exist = false)
+    private Department department;
+
+    @ApiModelProperty(value = "职称实体类")
+    @TableField(exist = false)
+    private Joblevel joblevel;
+    @ApiModelProperty(value = "职位实体类")
+    @TableField(exist = false)
+    private Position position;
 }
