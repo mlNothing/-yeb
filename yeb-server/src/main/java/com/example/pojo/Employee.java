@@ -119,7 +119,7 @@ public class Employee implements Serializable {
     private String workID;
 
     @ApiModelProperty(value = "合同期限")
-    @Excel(name = "合同期限")
+    @Excel(name = "合同期限",suffix = "年")
     private Double contractTerm;
 
     @ApiModelProperty(value = "转正日期")
