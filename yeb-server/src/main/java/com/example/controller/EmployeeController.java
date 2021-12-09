@@ -2,7 +2,9 @@ package com.example.controller;
 
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.example.pojo.*;
 import com.example.service.*;
@@ -10,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -149,6 +152,36 @@ public class EmployeeController {
             }
         }
         return null;
+    }
+
+    @ApiOperation("导入员工数据")
+    @PostMapping("/import")
+    public RespBean importEmployee(MultipartFile file){
+        ImportParams params = new ImportParams();
+        List<Nation> nationList = nationService.list();
+        List<Department> departmentList = departmentService.list();
+        List<PoliticsStatus> politicsStatusList = politicsStatusService.list();
+        List<Position> positionList = positionService.list();
+        List<Joblevel> joblevelList = joblevelService.list();
+//        去掉标题行
+        params.setTitleRows(1);
+        try {
+            List<Employee> list = ExcelImportUtil.importExcel(file.getInputStream(), Employee.class, params);
+            list.forEach(employee -> {
+//                获取民族id
+                employee.setNationId(nationList.get(nationList.indexOf(new Nation(employee.getNation().getName()))).getId());
+                employee.setDepartmentId(departmentList.get(departmentList.indexOf(new Department(employee.getDepartment().getName()))).getId());
+                employee.setPoliticId(politicsStatusList.get(politicsStatusList.indexOf(new PoliticsStatus(employee.getPoliticsStatus().getName()))).getId());
+                employee.setPosId(positionList.get(positionList.indexOf(new Position(employee.getPosition().getName()))).getId());
+                employee.setJobLevelId(joblevelList.get(joblevelList.indexOf(new Joblevel(employee.getJoblevel().getName()))).getId());
+            });
+            if (employeeService.saveBatch(list)){
+                return RespBean.success("导入成功");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return RespBean.error("导入失败");
     }
 
 }
