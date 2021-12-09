@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.pojo.Employee;
+import com.example.pojo.RespBean;
 import com.example.pojo.RespPageBean;
 
 import java.time.LocalDate;
@@ -26,4 +27,22 @@ public interface IEmployeeService extends IService<Employee> {
      * @return RespPageBean
      */
     RespPageBean getEmployee(Integer currentPage, Integer size, Employee employee, LocalDate[] beginDateScope);
+
+    /**
+     * create by: mlNothing
+     * description: 添加的时候自动获取最大工号
+     * create time: 2021/12/9 10:37
+     * @param 
+     * @return 
+     */
+    RespBean getMaxWorkID();
+
+    /**
+     * create by: mlNothing
+     * description: 添加操作员工
+     * create time: 2021/12/9 11:03
+     * @param employee 操作员工
+     * @return RespBean
+     */
+    RespBean addEmployee(Employee employee);
 }
