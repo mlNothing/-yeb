@@ -32,4 +32,5 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      * @return IPage
      */
     IPage<Employee> getEmployeeByPage(@Param("page") Page<Employee> page, @Param("employee") Employee employee, @Param("beginDateScope") LocalDate[] beginDateScope);
+
 }
