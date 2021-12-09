@@ -30,7 +30,6 @@ public class CustomFiter implements FilterInvocationSecurityMetadataSource {
         String requestUrl = ((FilterInvocation) object).getRequestUrl();
 //            获取菜单
         List<Menu> menus = menuService.getAllMenusWithRole();
-        System.out.println(menus);
         for (Menu menu : menus) {
 //            判断请求url与菜单角色是否匹配
          if( antPathMatcher.match(menu.getUrl(),requestUrl)){
