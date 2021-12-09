@@ -1,15 +1,21 @@
 package com.example.controller;
 
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.example.pojo.*;
 import com.example.service.*;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.omg.CORBA.portable.IDLEntity;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.events.Event;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -110,6 +116,39 @@ public class EmployeeController {
         if (employeeService.removeById(id)){
             return RespBean.success("删除成功");
         }return RespBean.error("删除失败");
+    }
+
+    @ApiOperation(value = "导出数据")
+    @GetMapping(value = "/export",produces = "application/octet-stream")
+    public RespBean exportEmployee(HttpServletResponse response){
+//        如果不传参就是查询所有的员工
+        List<Employee> employees=  employeeService.getAllEmps(null);
+//        1:文件名 2:表头 3:03版的 .xsl结尾 07的可以查看03的 03看不了07
+        ExportParams params = new ExportParams("员工表", "员工表", ExcelType.HSSF);
+        Workbook workbook = ExcelExportUtil.exportExcel(params, Employee.class, employees);
+        ServletOutputStream outputStream=null;
+        try {
+//            流形式
+            response.setHeader("content-type","application/octet-stream");
+//            防止中文乱码
+            response.setHeader("content-disposition","attachment;filename="+ URLEncoder.encode("员工表.xls","UTF-8"));
+           outputStream = response.getOutputStream();
+            workbook.write(outputStream);
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if (null!=outputStream){
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
     }
 
 }
