@@ -42,6 +42,7 @@ public class Employee implements Serializable {
     private String gender;
 
     @ApiModelProperty(value = "出生日期")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private LocalDate birthday;
 
     @ApiModelProperty(value = "身份证号")
@@ -90,6 +91,7 @@ public class Employee implements Serializable {
     private String school;
 
     @ApiModelProperty(value = "入职日期")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private LocalDate beginDate;
 
     @ApiModelProperty(value = "在职状态")
