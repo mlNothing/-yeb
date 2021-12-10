@@ -44,10 +44,6 @@ public class MailReceiver {
         MimeMessageHelper messageHelper = new MimeMessageHelper(message);
         try {
             //设置发送人
-            System.out.println(1);
-            System.out.println(2);
-            System.out.println(3);
-            System.out.println(mailProperties.getUsername());
             messageHelper.setFrom(mailProperties.getUsername());
             //设置收件人
             messageHelper.setTo(employee.getEmail());
@@ -66,10 +62,7 @@ public class MailReceiver {
             //参数1：邮件参数 参数2：是否是html邮件
             messageHelper.setText(mail,true);
             //发送邮件
-            System.out.println(111);
-
             javaMailSender.send(message);
-            System.out.println(2);
         } catch (MessagingException e) {
             e.printStackTrace();
             LOGGER.error("邮件发送失败 ========>",e.getMessage());
