@@ -1,0 +1,22 @@
+server:
+  port: 8082
+spring:
+  #rabbitmq配置
+  rabbitmq:
+    # 用户名
+    username: guest
+    # 密码
+    password: guest
+    # 服务器地址
+    host: 127.0.0.1
+    # 端口
+    port: 5672
+
+  #mail邮件配置
+  mail:
+    host: smtp.163.com
+    username: mlnothing21@163.com
+    password: JOTUZGBFIMEKZRDB
+    protocol: smtp
+    default-encoding: utf-8
+    port: 25

@@ -57,13 +57,13 @@ spring:
     # 密码
     password: guest
     # 服务器地址
-    host: 192.168.10.100
+    host: 127.0.0.1
     # 端口
     port: 5672
-    #消息确认回调
-    publisher-confirm-type: correlated
-    #消息失败回调
-    publisher-returns: true
+#    #消息确认回调
+#    publisher-confirm-type: correlated
+#    #消息失败回调
+#    publisher-returns: true
 
 # Mybatis-plus配置
 mybatis-plus:

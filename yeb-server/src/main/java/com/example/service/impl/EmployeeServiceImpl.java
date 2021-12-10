@@ -9,6 +9,7 @@ import com.example.pojo.Employee;
 import com.example.pojo.RespBean;
 import com.example.pojo.RespPageBean;
 import com.example.service.IEmployeeService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
     @Autowired
     private EmployeeMapper employeeMapper;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Override
     public RespPageBean getEmployee(Integer currentPage, Integer size, Employee employee, LocalDate[] beginDateScope) {
@@ -56,7 +59,14 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         double contractTerm = Double.parseDouble(decimalFormat.format(days / 365));
         employee.setContractTerm(contractTerm);
         if (1== employeeMapper.insert(employee)) {
-           return RespBean.success("添加成功");
+//            获取插入的员工信息
+            System.out.println("!");
+            Employee emp = employeeMapper.getAllEmps(employee.getId()).get(0);
+//            将员工信息发送到消息队列（mail.welcome）
+            rabbitTemplate.convertAndSend("mail.welcome",emp);
+            System.out.println("!1");
+
+            return RespBean.success("添加成功");
         }
         return RespBean.error("添加失败");
     }
