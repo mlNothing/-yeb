@@ -1,5 +1,5 @@
 swagger访问文档 http:localhost:8081/doc.html
-
+rbttitmq:http://localhost:15672/
 先获取验证码 
 账号admin 密码123  输入验证码 ，然后获取token 才可以访问后续的内容
 
