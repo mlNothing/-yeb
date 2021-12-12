@@ -2,6 +2,8 @@ package com.example.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.pojo.MailLog;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +13,8 @@ import com.example.pojo.MailLog;
  * @author mlx
  * @since 2021-11-16
  */
+@Repository
+@Mapper
 public interface MailLogMapper extends BaseMapper<MailLog> {
 
 }
