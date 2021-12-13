@@ -57,4 +57,13 @@ public interface IAdminService extends IService<Admin> {
      * @return RespBean
      */
     List<Admin> getAllAdmins(String keyWords);
+
+    /**
+     * create by: mlNothing
+     * description: 更新用户密码
+     * create time: 2021/12/13 17:33
+     * @param 
+     * @return 
+     */
+    RespBean updateAdminPassword(String oldPass, String pass, Integer adminId);
 }

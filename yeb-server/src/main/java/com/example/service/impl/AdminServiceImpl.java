@@ -17,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -103,5 +104,20 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public List<Admin> getAllAdmins(String keyWords) {
         Integer id = AdminUtil.getCurrentAdmin().getId();
         return adminMapper.getAllAdmins(id,keyWords);
+    }
+
+    @Override
+    public RespBean updateAdminPassword(String oldPass, String pass, Integer adminId) {
+        Admin admin = adminMapper.selectById(adminId);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (encoder.matches(oldPass, admin.getPassword())) {
+            String newPassword = encoder.encode(pass);
+            admin.setPassword(newPassword);
+            if (adminMapper.updateById(admin) == 1) {
+                return RespBean.success("密码修改成功！");
+            }
+            return RespBean.error("密码修改失败！");
+        }
+        return RespBean.error("密码输入错误！");
     }
 }
