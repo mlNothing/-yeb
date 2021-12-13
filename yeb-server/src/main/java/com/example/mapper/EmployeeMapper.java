@@ -42,4 +42,13 @@ public interface EmployeeMapper extends BaseMapper<Employee> {
      * @return list
      */
     List<Employee> getAllEmps(Integer id);
+
+    /**
+     * create by: mlNothing
+     * description: 查询员工账套
+     * create time: 2021/12/13 16:33
+     * @param 
+     * @return 
+     */
+    IPage<Employee> getEmployeeWithSalary(Page<Employee> page);
 }

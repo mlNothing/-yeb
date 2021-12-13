@@ -55,4 +55,13 @@ public interface IEmployeeService extends IService<Employee> {
      * @return LIST
      */
     List<Employee> getAllEmps(Integer id);
+
+    /**
+     * create by: mlNothing
+     * description: 查询员工的工资账套
+     * create time: 2021/12/13 16:22
+     * @param 
+     * @return 
+     */
+    RespPageBean getEmployeeWithSalary(Integer currentPage, Integer pageSize);
 }
