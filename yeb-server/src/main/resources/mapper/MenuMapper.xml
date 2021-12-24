@@ -39,7 +39,7 @@
 
 <!--查询所有菜单-->
     <resultMap id="MenusWithChildren" type="com.example.pojo.Menu" extends="BaseResultMap">
-        <id column="id" property="id"></id>
+        <id column="id1" property="id"></id>
         <result column="name" property="name"></result>
         <collection property="children" ofType="com.example.pojo.Menu">
             <id column="id2" property="id"></id>
