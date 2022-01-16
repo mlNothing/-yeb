@@ -17,8 +17,10 @@
     </resultMap>
     <resultMap id="AdminWithRole" type="com.example.pojo.Admin" extends="BaseResultMap">
         <collection property="roles" ofType="com.example.pojo.Role">
+            <id property="id" column="rid"></id>
             <result column="rname" property="name"></result>
             <result column="rnameZH" property="nameZh"></result>
+
         </collection>
     </resultMap>
     <!-- 通用查询结果列 -->
@@ -30,7 +32,8 @@
         SELECT
             a.*,
             r.`name` AS rname,
-            r.nameZh AS rnameZH
+            r.nameZh AS rnameZH,
+            r.id AS  rid
         FROM
             t_admin a
                 LEFT JOIN t_admin_role ar ON a.id = ar.adminId

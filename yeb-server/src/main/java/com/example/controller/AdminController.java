@@ -41,10 +41,17 @@ public class AdminController {
 
     @ApiModelProperty(value = "增加操作员")
     @PutMapping("/")
-    public RespBean updateAdmin(@RequestBody Admin admin){
+    public RespBean addAdmin(@RequestBody Admin admin){
         if (adminService.save(admin)){
             return RespBean.success("添加成功");
         }return RespBean.error("添加失败");
+    }
+    @ApiModelProperty(value = "更新操作员")
+    @PutMapping("/updateAdmin")
+    public RespBean updateAdmin(@RequestBody Admin admin){
+        if (adminService.updateById(admin)){
+            return RespBean.success("更新成功");
+        }return RespBean.error("更新失败");
     }
     @ApiModelProperty(value = "获取所有角色")
     @GetMapping("/roles")
