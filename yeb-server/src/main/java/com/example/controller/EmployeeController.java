@@ -100,13 +100,13 @@ public class EmployeeController {
     }
 
     @ApiOperation(value = "添加操作员")
-    @PutMapping("/")
+    @PostMapping("/")
     public RespBean addEmployee(@RequestBody Employee employee){
         return employeeService.addEmployee(employee);
     }
 
     @ApiOperation(value = "更新操作员")
-    @PostMapping("/")
+    @PutMapping ("/")
     public  RespBean updateEmployee(@RequestBody Employee employee){
         if (employeeService.updateById(employee)) {
             return RespBean.success("更新成功");
