@@ -59,4 +59,9 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         }
         return RespBean.error("删除失败");
     }
+
+    @Override
+    public List<Department> getAllDepartments() {
+        return departmentMapper.getAllDepartmentWithChildren(-1);
+    }
 }

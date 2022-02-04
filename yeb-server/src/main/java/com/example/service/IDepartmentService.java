@@ -40,4 +40,7 @@ public interface IDepartmentService extends IService<Department> {
      * @return RespBean
      */
      RespBean deleDePartment(Integer id);
+
+
+    List<Department> getAllDepartments();
 }

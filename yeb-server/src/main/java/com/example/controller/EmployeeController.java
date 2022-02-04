@@ -77,7 +77,7 @@ public class EmployeeController {
     @ApiOperation(value = "获取全部部门信息")
     @GetMapping("/deps")
     public List<Department> getDeps(){
-       return departmentService.list();
+       return departmentService.getAllDepartments();
     }
 
     @ApiOperation(value = "获取全部职称信息")
