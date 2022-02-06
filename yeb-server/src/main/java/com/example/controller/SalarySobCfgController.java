@@ -4,11 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.pojo.Employee;
 import com.example.pojo.RespBean;
 import com.example.pojo.RespPageBean;
+import com.example.pojo.Salary;
 import com.example.service.IEmployeeService;
 import com.example.service.ISalaryService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author mlNothing
@@ -56,5 +59,16 @@ public class SalarySobCfgController {
         }
         return RespBean.error("更新失败");
     }
-
+    /**
+     * create by: mlNothing
+     * description: 更新员工账套
+     * create time: 2021/12/13 16:22
+     * @param
+     * @return
+     */
+    @ApiOperation(value = "获取所有工资账套")
+    @GetMapping("/salaries")
+    public List<Salary> getAllSalaries() {
+        return salaryService.list();
+    }
 }
