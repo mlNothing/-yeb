@@ -26,7 +26,7 @@ public class AdminInfoController {
     @Autowired
     private IAdminService adminService;
     @ApiOperation(value = "更新当前用户信息")
-    @PostMapping("/admin/info")
+    @PutMapping("/admin/info")
     public RespBean updateAdminInfo(@RequestBody Admin admin, Authentication authentication) {
         //修改admin信息
         if (adminService.updateById(admin)) {
